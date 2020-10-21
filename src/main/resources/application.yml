@@ -1,0 +1,169 @@
+server:
+  port: 8099
+  tomcat:
+    max-http-post-size: 20971520
+spring:
+  servlet:
+    multipart:
+      enabled: true #是否启用http上传处理
+      max-request-size: 100MB #最大请求文件的大小
+      max-file-size: 20MB #设置单个文件最大长度
+      file-size-threshold: 20MB #当文件达到多少时进行磁盘写入
+  application:
+    name: service-develop
+  datasource:
+    name: qh
+    url:  jdbc:mysql://10.130.21.60:33061/qh?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: admin
+    password: admin123!
+    driver-class-name:  com.mysql.jdbc.Driver
+    max-idle: 64
+    max-wait: 10000
+    min-idle: 12
+    initial-size: 12
+
+
+filepath:
+
+  file_url: http://127.0.0.1:30092/tianjinDevelop/file/
+  file_path: /home/yh/
+  file_img_path:  /home/yh/imgFile/
+  file_cert_path: /home/yh/certFile/
+  file_company_logo_path: /home/yh/certFile/corporateLogo/
+  file_company_mimi_path: /home/yh/certFile/company/
+  file_company_new_path: /home/yh/certFile/company/
+  file_autho_path: /home/yh/authorizeer/
+  file_down_path: /home/yh/fileDown/
+  file_down_accessory_path: /home/yh/productAccessories
+  logo_path: /home/yh/companyLogo
+  file_down_authorizeer_path: /home/yh/sys/tj.docx
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+#统一认证平台
+auth:
+  #应用唯一标识
+  appid: 711dcd24-6da1-4f0c-aaaf
+  #应用密钥AppSecret
+  secret: 120b5e14613ae0054b4539a2e09acece
+  #系统编号
+  systemNumber: 902771
+  #请求CODE路径（正式服务器）
+  getCodeUrl: https://auth:ifcert:org:cn/auth/qrconnect
+  #通过code获取access_token（正式服务器）
+  getAccessTokenUrl: https://auth.ifcert.org.cn/auth/access_token
+  #通过access_token调用接口获取用户信息（正式服务器）
+  getUserinfoUrl: https://auth.ifcert.org.cn/auth/userinfo
+  #登录成功后跳转路径（正式服务器）
+  login_to_url: https://tjrzdbm.ifcert.cn/dologin
+  #重定向的地址
+  #redirect: http://localhost:8081/#/Index
+  redirect: http://10.130.21.60:20100/#/Index
+  #统一认证平台获取企业列表接口
+  user_list: https://jcc.jrgz.tj.gov.cn/mapi/common/message/getProgressUserList
+  #注册
+  registUser: https://auth.ifcert.org.cn/authentication/registUser
+  #修改密码
+  updatePwdUrl: https://auth.ifcert.org.cn/authentication/resetPassword
+  #修改或者绑定手机号
+  updatePhoneUrl: https://auth.ifcert.org.cn/authentication/bindingPhone
+  #发短信
+  phone_sendMsg: https://auth.ifcert.org.cn/authentication/sendMsg
+new_message:
+  json: "{
+         	\"1\": \"CERT_STR_COMAPANY_NAME 向 CERT_STR_GOODS_NAME 发起申请，请注意查看！\",
+            \"2\": \"CERT_STR_COMAPANY_BANK 对您发布的需求添加意向，请注意查看！\",
+            \"3\": \"CERT_STR_COMAPANY_NAME 提交实名认证审核，请注意查看！\",
+            \"4.1\": \"您提交的实名认证审核已通过，请注意查看！\",
+            \"4.2\": \"您提交的实名认证审核未通过，请注意查看！\",
+            \"4.3\": \"您的认证打款金额已退还至打款账户，请注意查看！\",
+            \"5\": \"CERT_STR_COMAPANY_NAME提交银行产品审核，请注意查看！\",
+            \"6\": \"CERT_STR_COMAPANY_NAME提交担保产品审核，请注意查看！\",
+            \"13\": \"CERT_STR_COMAPANY_NAME提交小贷产品审核，请注意查看！\",
+            \"12\": \"CERT_STR_COMAPANY_NAME提交融资租赁产品审核，请注意查看！\",
+            \"7.1\": \"恭喜，您提交银行产品CERT_STR_GOODS_NAME通过审核，请注意查看！\",
+            \"7.2\": \"您提交银行产品CERT_STR_GOODS_NAME未通过审核，请注意查看！\",
+            \"7.3\": \"恭喜，您提交小贷CERT_STR_GOODS_NAME通过审核，请注意查看！\",
+            \"7.4\": \"您提交小贷CERT_STR_GOODS_NAME未通过审核，请注意查看！\",
+            \"7.5\": \"恭喜，您提交融资租赁产品CERT_STR_GOODS_NAME通过审核，请注意查看！\",
+            \"7.6\": \"您提交融资租赁产品CERT_STR_GOODS_NAME未通过审核，请注意查看！\",
+            \"8.1\": \"恭喜，您提交担保产品CERT_STR_GOODS_NAME通过审核，请注意查看！\",
+            \"8.2\": \"您提交担保产品CERT_STR_GOODS_NAME未通过审核，请注意查看！\",
+            \"9.2\": \"抱歉，您的贷款申请编号CERT_STR_NUMBER未通过受理\",
+            \"9.1\": \"恭喜，您的贷款申请编号CERT_STR_NUMBER通过受理\",
+            \"9.4\": \"抱歉，您的小额贷款申请编号CERT_STR_NUMBER未通过受理\",
+            \"9.3\": \"恭喜，您的小额贷款申请编号CERT_STR_NUMBER通过受理\",
+            \"9.6\": \"抱歉，您的融资租赁申请编号CERT_STR_NUMBER未通过受理\",
+            \"9.5\": \"恭喜，您的融资租赁申请编号CERT_STR_NUMBER通过受理\",
+            \"10.2\": \"抱歉，您的担保申请编号CERT_STR_NUMBER未通过受理\",
+            \"10.1\": \"恭喜，您的担保申请编号CERT_STR_NUMBER通过受理\",
+            \"14\": \"CERT_STR_COMAPANY_NAME提交保险产品审核，请注意查看！\",
+            \"14.1\": \"恭喜，您的保险申请编号CERT_STR_NUMBER通过受理\",
+            \"14.2\": \"您提交保险产品CERT_STR_GOODS_NAME未通过审核，请注意查看！\",
+            \"14.3\": \"抱歉，您的保险申请编号CERT_STR_NUMBER未通过受理\",
+            \"15\": \"CERT_STR_COMAPANY_NAME添加您为意向银行，并提交了需求审核，请注意查看！\",
+            \"11\":\"您发布的融资需求（需求编号为：CERT_STR_NUMBER）被（CERT_STR_COMAPANY_BANK）受理，请注意查看！\"
+
+         }"
+
+new_message2:
+  json: "{
+         	\"1\": \"CERT_STR_COMAPANY_NAME 向 CERT_STR_GOODS_NAME 发起申请，请注意查看！\",
+            \"2\": \"CERT_STR_COMAPANY_BANK 对您发布的需求添加意向，请注意查看！\",
+            \"3\": \"CERT_STR_COMAPANY_NAME 提交实名认证审核，请注意查看！\",
+            \"4.1\": \"您提交的实名认证审核已通过，请注意查看！\",
+            \"4.2\": \"您提交的实名认证审核未通过，请注意查看！\",
+            \"4.3\": \"您的认证打款金额已退还至打款账户，请注意查看！\",
+            \"5\": \"CERT_STR_COMAPANY_NAME提交银行产品审核，请注意查看！\",
+            \"6\": \"CERT_STR_COMAPANY_NAME提交担保产品审核，请注意查看！\",
+            \"13\": \"CERT_STR_COMAPANY_NAME提交小贷产品审核，请注意查看！\",
+
+            \"14\": \"CERT_STR_COMAPANY_NAME提交保险产品审核，请注意查看！\",
+            \"14.1\": \"恭喜，您的保险申请编号CERT_STR_NUMBER通过受理\",
+            \"14.2\": \"您提交保险产品CERT_STR_GOODS_NAME未通过审核，请注意查看！\",
+            \"14.3\": \"抱歉，您的保险申请编号CERT_STR_NUMBER未通过受理\",
+
+            \"12\": \"CERT_STR_COMAPANY_NAME提交融资租赁产品审核，请注意查看！\",
+            \"7.1\": \"恭喜，您提交银行产品CERT_STR_GOODS_NAME通过审核，请注意查看！\",
+
+            \"7.1\": \"恭喜，您提交银行产品CERT_STR_GOODS_NAME通过审核，请注意查看！\",
+            \"7.2\": \"您提交银行产品CERT_STR_GOODS_NAME未通过审核，请注意查看！\",
+            \"7.3\": \"恭喜，您提交小贷CERT_STR_GOODS_NAME通过审核，请注意查看！\",
+            \"7.4\": \"您提交小贷CERT_STR_GOODS_NAME未通过审核，请注意查看！\",
+            \"7.5\": \"恭喜，您提交融资租赁产品CERT_STR_GOODS_NAME通过审核，请注意查看！\",
+            \"7.6\": \"您提交融资租赁产品CERT_STR_GOODS_NAME未通过审核，请注意查看！\",
+            \"8.1\": \"恭喜，您提交担保产品CERT_STR_GOODS_NAME通过审核，请注意查看！\",
+            \"8.2\": \"您提交担保产品CERT_STR_GOODS_NAME未通过审核，请注意查看！\",
+            \"9.2\": \"抱歉，您的贷款申请编号CERT_STR_NUMBER未通过受理\",
+            \"9.1\": \"恭喜，您的贷款申请编号CERT_STR_NUMBER通过受理\",
+            \"9.4\": \"抱歉，您的小额贷款申请编号CERT_STR_NUMBER未通过受理\",
+            \"9.3\": \"恭喜，您的小额贷款申请编号CERT_STR_NUMBER通过受理\",
+            \"9.6\": \"抱歉，您的融资租赁申请编号CERT_STR_NUMBER未通过受理\",
+            \"9.5\": \"恭喜，您的融资租赁申请编号CERT_STR_NUMBER通过受理\",
+            \"10.2\": \"抱歉，您的担保申请编号CERT_STR_NUMBER未通过受理\",
+            \"10.1\": \"恭喜，您的担保申请编号CERT_STR_NUMBER通过受理\",
+            \"11\":\"您发布的融资需求（需求编号为：CERT_STR_NUMBER）被（CERT_STR_COMAPANY_BANK）受理，请注意查看！\"
+
+         }"
+
+
+logging:
+  level:
+    com.scistor.develop.dao: debug
+    root: info
+
+messages:
+  smsTemplateCode: SMS_159045017
+  #测试测试
+  #测试测试
+
+#这里如果是1，就开启全加密交互
+#dataAll是1 代表开发环境
+aes_rsa_open:
+  flag: 0
+  dataAll: 0
+
+aes:
+  not_rsa_url: /tianjinDevelop/Network/getEnterpriseGovernmentDataList,/tianjinDevelop/Network/getTest,/tianjinDevelop/Network/postList,/tianjinDevelop/Network/generateTheFile,/tianjinDevelop/Network/generateTheDataDown,/tianjinDevelop/Authorize/entiAuth,/authorizationCallbak,/error
